@@ -37,8 +37,8 @@ create table book
    ISBN                 int not null,
    title                text not null,
    language             text not null,
-   number_of_pages      int not null,
-   year_of_production   year not null,
+   number_of_pages      int not null CHECK (number_of_pages > 0),
+   year_of_production   year not null CHECK (year_of_production > 1500 AND year_of_production <= 2022),
    primary key (ISBN)
 );
 
@@ -60,7 +60,7 @@ create table book_copy
    rack_id              int,
    ISBN                 int not null,
    barcode              numeric(8,0) not null,
-   price                float(8,2) not null,
+   price                float(8,2) not null CHECK (price >= 0),
    purchase_date        date not null,
    borrowed_status		boolean not null default false,
    primary key (copy_id)
@@ -94,7 +94,7 @@ create table borrow
    copy_id              int not null,
    borrow_status        bool not null,
    date_borrowed        date not null,
-   date_due             date not null comment '',
+   date_due             date not null,
    date_returned        date default NULL,
    primary key (borrow_id)
 );
@@ -106,7 +106,7 @@ create table card
 (
    card_id              int not null,
    student_id           int not null,
-   activation_date      date not null comment '',
+   activation_date      date not null,
    card_status          bool not null,
    resource_name        text not null,
    primary key (card_id)
@@ -141,7 +141,7 @@ create table student
    f_name               text not null,
    l_name               text not null,
    postal_address       text not null,
-   email_address        text not null,
+   email_address        text not null, -- CHECK (email_address REGEXP '^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$'),
    phone_no             text not null,
    registered_library   bool not null,
    registered_uni       bool not null,
