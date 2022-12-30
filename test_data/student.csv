@@ -1,0 +1,11 @@
+﻿student_id;f_name;l_name;postal_address;email_address;phone_no;registered_library;registered_uni
+1;Alexis;Hickle;93 NORTH 9TH STREET, BROOKLYN NY 11211;alexis@gmail.com;039 298-72-30;TRUE;TRUE
+2;Clare;Durgan;380 WESTMINSTER ST, PROVIDENCE RI 02903;clare@gmail.com;09564 310-6 4;FALSE;TRUE
+3;Pierre;Greenholt;41 N 4TH ST, ALLENTOWN PA 18102;pierre@outlook.com;00594-83-34 93;FALSE;TRUE
+4;Tess;Beatty;115 ENTERPRISE COURT, GREENWOOD SC 29649;tess@gmail.com;354 900 548 442;FALSE;FALSE
+5;Moses;Legros;931 OLD SMITHVILLE HWY, MCMINNVILLE TN 37110;moses@something.com;0796-92 7309;TRUE;TRUE
+6;Danika;Kshlerin;1301 GREENE STREET, MARIETTA OH 45750;danika@gmail.com;3 725 135 468;TRUE;FALSE
+7;Rachel;Schulist;317 SOUTH DRAKE ROAD, KALAMAZOO MI 49009;rachel@gmail.com;085-031-4296;FALSE;FALSE
+8;Alisha;Swift;105 Amity Way, Wayne PA 19087;alisha@gmail.com;025368 084-985;TRUE;FALSE
+9;Micheal;Boyer;400 Monroe St, Hoboken, NJ 07030;micheal@mail.ee;030947-48235 46;FALSE;TRUE
+10;Jermey;Nolan;101 West End Avenue, New York NY 10023;jermey@gmail.com;0596-14 16 24;FALSE;FALSE
