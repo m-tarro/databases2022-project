@@ -2,6 +2,7 @@
 /* DBMS name:      MySQL 5.0                                    */
 /* Created on:     30.12.2022 03:02:27                          */
 /*==============================================================*/
+drop database if exists db_project;
 create database db_project;
 use db_project;
 
@@ -34,8 +35,8 @@ drop table if exists subject;
 /*==============================================================*/
 create table author
 (
-   author_id            int not null  comment '',
-   author_name          text not null  comment '',
+   author_id            int not null,
+   author_name          text not null,
    primary key (author_id)
 );
 
@@ -44,11 +45,11 @@ create table author
 /*==============================================================*/
 create table book
 (
-   ISBN                 int not null  comment '',
-   title                text not null  comment '',
-   language             text not null  comment '',
-   number_of_pages      int not null  comment '',
-   year_of_production   year not null  comment '',
+   ISBN                 int not null,
+   title                text not null,
+   language             text not null,
+   number_of_pages      int not null,
+   year_of_production   year not null,
    primary key (ISBN)
 );
 
@@ -57,8 +58,8 @@ create table book
 /*==============================================================*/
 create table book_author
 (
-   ISBN                 int not null  comment '',
-   author_id            int not null  comment ''
+   ISBN                 int not null,
+   author_id            int not null
 );
 
 /*==============================================================*/
@@ -66,12 +67,12 @@ create table book_author
 /*==============================================================*/
 create table book_copy
 (
-   copy_id              int not null  comment '',
-   rack_id              int  comment '',
-   ISBN                 int not null  comment '',
-   barcode              numeric(8,0) not null  comment '',
-   price                float(8,2) not null  comment '',
-   purchase_date        date not null  comment '',
+   copy_id              int not null,
+   rack_id              int,
+   ISBN                 int not null,
+   barcode              numeric(8,0) not null,
+   price                float(8,2) not null,
+   purchase_date        date not null,
    primary key (copy_id)
 );
 
@@ -80,8 +81,8 @@ create table book_copy
 /*==============================================================*/
 create table book_publisher
 (
-   ISBN                 int  comment '',
-   publisher_id         int  comment ''
+   ISBN                 int,
+   publisher_id         int
 );
 
 /*==============================================================*/
@@ -89,8 +90,8 @@ create table book_publisher
 /*==============================================================*/
 create table book_subject
 (
-   ISBN                 int  comment '',
-   subject_id           int  comment ''
+   ISBN                 int,
+   subject_id           int
 );
 
 /*==============================================================*/
@@ -98,13 +99,13 @@ create table book_subject
 /*==============================================================*/
 create table borrow
 (
-   borrow_id            int not null  comment '',
-   card_id              int not null  comment '',
-   copy_id              int not null  comment '',
-   borrow_status        bool not null  comment '',
-   date_borrowed        date not null  comment '',
+   borrow_id            int not null,
+   card_id              int not null,
+   copy_id              int not null,
+   borrow_status        bool not null,
+   date_borrowed        date not null,
    date_due             date not null comment '',
-   date_returned        date default NULL  comment '',
+   date_returned        date default NULL,
    primary key (borrow_id)
 );
 
@@ -113,11 +114,11 @@ create table borrow
 /*==============================================================*/
 create table card
 (
-   card_id              int not null  comment '',
-   student_id           int not null  comment '',
+   card_id              int not null,
+   student_id           int not null,
    activation_date      date not null comment '',
-   card_status          bool not null  comment '',
-   resource_name        text not null  comment '',
+   card_status          bool not null,
+   resource_name        text not null,
    primary key (card_id)
 );
 
@@ -126,8 +127,8 @@ create table card
 /*==============================================================*/
 create table publisher
 (
-   publisher_id         int not null  comment '',
-   publisher_name       text not null  comment '',
+   publisher_id         int not null,
+   publisher_name       text not null,
    primary key (publisher_id)
 );
 
@@ -136,8 +137,8 @@ create table publisher
 /*==============================================================*/
 create table rack
 (
-   rack_id              int not null  comment '',
-   rack_name            text not null  comment '',
+   rack_id              int not null,
+   rack_name            text not null,
    primary key (rack_id)
 );
 
@@ -146,14 +147,14 @@ create table rack
 /*==============================================================*/
 create table student
 (
-   student_id           int not null  comment '',
-   f_name               text not null  comment '',
-   l_name               text not null  comment '',
-   postal_address       text not null  comment '',
-   email_address        text not null  comment '',
-   phone_no             text not null  comment '',
-   registered_library   bool not null  comment '',
-   registered_uni       bool not null  comment '',
+   student_id           int not null,
+   f_name               text not null,
+   l_name               text not null,
+   postal_address       text not null,
+   email_address        text not null,
+   phone_no             text not null,
+   registered_library   bool not null,
+   registered_uni       bool not null,
    primary key (student_id)
 );
 
@@ -162,8 +163,8 @@ create table student
 /*==============================================================*/
 create table subject
 (
-   subject_id           int not null  comment '',
-   subject_name         text not null  comment '',
+   subject_id           int not null,
+   subject_name         text not null,
    primary key (subject_id)
 );
 
@@ -199,4 +200,3 @@ alter table borrow add constraint FK_BORROW_COPY_BORR_BOOK_COP foreign key (copy
 
 alter table card add constraint FK_CARD_CARD_BELO_STUDENT foreign key (student_id)
       references student (student_id) on delete restrict on update restrict;
-
