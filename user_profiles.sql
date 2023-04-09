@@ -1,4 +1,4 @@
-use db_project;
+USE db_project;
 
 -- create administrator with all privileges
 CREATE USER 'administrator'@'localhost' IDENTIFIED BY 'adminpassword';

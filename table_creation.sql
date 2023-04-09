@@ -2,8 +2,8 @@
 /* DBMS name:      MySQL 5.0                                    */
 /* Created on:     30.12.2022 03:02:27                          */
 /*==============================================================*/
--- drop database if exists db_project;
--- create database db_project;
+drop database if exists db_project;
+create database db_project;
 use db_project;
 
 drop table if exists book_author;

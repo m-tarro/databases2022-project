@@ -1,4 +1,4 @@
-use db_project;
+USE db_project;
 
 DROP TRIGGER IF EXISTS prevent_insert_on_card;
 DROP TRIGGER IF EXISTS prevent_overborrowing;

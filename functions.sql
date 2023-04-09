@@ -1,16 +1,3 @@
--- data insertion into borrow (these books are borrowed)
-INSERT INTO borrow (card_id, copy_id) VALUES (3,3);
-INSERT INTO borrow (card_id, copy_id) VALUES (8,5);
-INSERT INTO borrow (card_id, copy_id) VALUES (12,8);
-INSERT INTO borrow (card_id, copy_id) VALUES (14,11);
-INSERT INTO borrow (card_id, copy_id) VALUES (16,12);
-INSERT INTO borrow (card_id, copy_id) VALUES (19,4);
-
-select * from book_author;
--- data update on borrow (these books are returned)
-UPDATE borrow  SET borrow_status = FALSE WHERE copy_id = 3;
-UPDATE borrow  SET borrow_status = FALSE WHERE copy_id = 19;
-
 -- function to display who borrowed a specific book (by isbn)
 DROP FUNCTION IF EXISTS students_borrowed_this_book;
 DELIMITER //
@@ -29,8 +16,6 @@ BEGIN
     RETURN students;
 END
 // DELIMITER ;
--- testing the function
-SELECT students_borrowed_this_book(4);
 
 -- function to display what books a student has borrowed (by student_id)
 DROP FUNCTION IF EXISTS these_books_borrowed_by_student;
@@ -50,21 +35,6 @@ BEGIN
     RETURN isbns;
 END
 // DELIMITER ;
--- testing the function
-SELECT these_books_borrowed_by_student(1);
-
--- view to display overdue books
-DROP VIEW IF EXISTS overdue_books;
-CREATE VIEW overdue_books AS
-SELECT *
-FROM borrow
-WHERE date_returned IS NULL AND date_due < DATE('2023-01-31'); -- CURDATE() ;
--- testing the view
-SELECT book_copy.ISBN, book.title, overdue_books.copy_id, date_borrowed, date_due
-FROM overdue_books
-INNER JOIN book_copy ON book_copy.copy_id = overdue_books.copy_id
-INNER JOIN book ON book.isbn = book_copy.isbn
-ORDER BY book_copy.ISBN, overdue_books.copy_id;
 
 -- function to display number of remaining copies of a given book
 DROP FUNCTION IF EXISTS no_of_remaining_copies;
@@ -80,5 +50,3 @@ BEGIN
     RETURN count_copies;
 END
 // DELIMITER ;
--- testing the function
-SELECT no_of_remaining_copies(6);
